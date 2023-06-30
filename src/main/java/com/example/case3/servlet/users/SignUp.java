@@ -15,6 +15,7 @@ import java.util.Date;
 @WebServlet("/signUp")
 public class SignUp extends HttpServlet {
     Users_DAO usersDao = new Users_DAO();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.sendRedirect("/SignIn/SignUp.jsp");
@@ -27,20 +28,21 @@ public class SignUp extends HttpServlet {
         String acc = req.getParameter("acc");
         Date date = new Date();
         String date_created = String.valueOf(date);
-        if (checkUser(acc)){
-            req.setAttribute("err","tài khoản đã ồn tại");
+        if (checkUser(acc)) {
+            req.setAttribute("err", "Account already exists ");
             RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignUp.jsp");
             rd.forward(req, resp);
 
-        }else {
-        Users users = new Users(name,acc,pass,date_created );
-       usersDao.insertAccSql(users);
-       resp.sendRedirect("/SignIn/SignIn.jsp");
+        } else {
+            Users users = new Users(name, acc, pass, date_created);
+            usersDao.insertAccSql(users);
+            resp.sendRedirect("/SignIn/SignIn.jsp");
         }
     }
-    private boolean checkUser(String acc){
-        for (Users users: usersDao.getAll_users()) {
-            if (users.getAcc().equals(acc)){
+
+    private boolean checkUser(String acc) {
+        for (Users users : usersDao.getAll_users()) {
+            if (users.getAcc().equals(acc)) {
                 return true;
             }
         }

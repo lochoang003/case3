@@ -50,7 +50,6 @@
                 <!--            quốc gia-->
                 <li><a href="#movies">Country</a></li>
                 <!--            phim đã lưu-->
-                <li><a href="#originals">My List</a></li>
             </ul>
         </nav>
         <nav class="sub-nav">
@@ -59,7 +58,19 @@
             <!--            thông báo-->
             <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
             <!--            tài khoản-->
-            <a href="#">Account</a>
+
+
+            <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li class="list-group-item"><a href="/login">Log out</a></li>
+                    <li class="list-group-item"><a href="#">My List</a></li>
+                </ul>
+            </div>
+
+
+<%--            <a href="#">Account</a>--%>
         </nav>
     </header>
     <!-- END OF HEADER -->

@@ -3,6 +3,7 @@ package com.example.case3.servlet.users;
 import com.example.case3.dao.Users_DAO;
 import com.example.case3.model.Users;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,15 +30,28 @@ public class Login extends HttpServlet {
             if (users.getRole().equals("client") && users.getStatus() == ON) {
                 resp.sendRedirect("/HOME/home.jsp");
             } else if (users.getRole().equals("client") && users.getStatus() == OFF) {
-                req.setAttribute("err", "your account has been locked");
-                resp.sendRedirect("/SignIn/SignIn.jsp");
-            } else if (users.getRole().equals("addmin") && users.getStatus() == ON) {
-                resp.sendRedirect("/addmin");
-            } else {
-                resp.sendRedirect("/demo.jsp");
+                req.setAttribute("err", "Your account has been locked");
+                RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignIn.jsp");
+                rd.forward(req, resp);
+            } else if (users.getRole().equals("admin") && users.getStatus() == ON) {
+                resp.sendRedirect("/admin");
+            }else {
+                req.setAttribute("err", "Your admin account is locked ");
+                RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignIn.jsp");
+                rd.forward(req, resp);
             }
         } else {
-            resp.sendRedirect("/demo.jsp");
+            req.setAttribute("err", "Account password is not correct ");
+            RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignUp.jsp");
+            rd.forward(req, resp);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.setAttribute("account", null);
+        RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignIn.jsp");
+        rd.forward(req, resp);
     }
 }
