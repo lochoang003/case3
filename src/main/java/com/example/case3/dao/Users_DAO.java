@@ -26,7 +26,7 @@ public class Users_DAO {
                 String pass = resultSet.getString("pass");
                 String date_created = resultSet.getString("date_created");
                 byte status = resultSet.getByte("status");
-                byte role = resultSet.getByte("role");
+                String role = resultSet.getString("role");
                 users.add(new Users(id,name,acc,pass,date_created,status,role));
             }
         }catch (Exception e){
@@ -72,7 +72,7 @@ public class Users_DAO {
             String name = resultSet.getString("name_users");
             String date_created = resultSet.getString("date_created");
             byte status = resultSet.getByte("status");
-            byte role = resultSet.getByte("role");
+            String role = resultSet.getString("role");
 
             return new Users(id,name, user, pass,date_created,status, role);
 

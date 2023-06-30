@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="style.css">
   <title>Netflix - Watch TV Shows Online, Watch Movies Online</title>
   <link rel="stylesheet" href="SignIn.css">
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 </head>
 <body>
 <header class="showcase">
@@ -18,7 +20,7 @@
     <div class="formm">
       <form action="/signUp" method="post">
         <!--      form đăng nhập-->
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <div class="info">
           <input name="name_users" class="email" type="text" placeholder="Full name">
           <input name="acc" class="email" type="text" placeholder="Email or phone number"> <br>
@@ -26,14 +28,14 @@
 
         </div>
         <!--        nút đăng nhập-->
-        <div class="btn">
+        <div >
           <button class="btn-primary" type="submit">Register</button>
-          <% String error = (String) request.getAttribute("error"); %>
-          <% if (error != null) { %>
-          <div style="color: red;"><%= error %>
-          </div>
-          <% } %>
         </div>
+        <% String error = (String) request.getAttribute("err"); %>
+        <% if (error != null) { %>
+        <div style="color: red;"><%= error %>
+        </div>
+        <% } %>
         <div class="help">
 
           <a href="https://www.netflix.com/dz-en/LoginHelp">Need Help ?</a>

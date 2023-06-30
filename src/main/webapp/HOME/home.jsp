@@ -36,9 +36,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genres
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <c:forEach items="${}">
+<%--                        <c:forEach items="${}">--%>
 
-                        </c:forEach>
+<%--                        </c:forEach>--%>
                         <li class="list-group-item"><a href="#"> 18+ </a></li>
                         <li class="list-group-item"><a href="#">Horror</a></li>
                         <li class="list-group-item"><a href="#">Romance</a></li>

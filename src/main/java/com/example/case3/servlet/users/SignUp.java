@@ -29,7 +29,7 @@ public class SignUp extends HttpServlet {
         String date_created = String.valueOf(date);
         if (checkUser(acc)){
             req.setAttribute("err","tài khoản đã ồn tại");
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/SignIn/SignUp.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignUp.jsp");
             rd.forward(req, resp);
 
         }else {
