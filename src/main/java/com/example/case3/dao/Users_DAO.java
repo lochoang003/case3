@@ -27,7 +27,7 @@ public class Users_DAO {
                 String date_created = resultSet.getString("date_created");
                 byte status = resultSet.getByte("status");
                 byte role = resultSet.getByte("role");
-                users.add(new Users(id,name,acc,pass,date_created,status,role));
+//                users.add(new Users(id,name,acc,pass,date_created,status,role));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -59,26 +59,26 @@ public class Users_DAO {
         }
 
     }
-    public Users getLogin(String user, String pass) {
-        try {
-            String sql = "select * from `movie`.`users` where `acc`= ? and `pass`= ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, user);
-            statement.setString(2, pass);
-            ResultSet resultSet = statement.executeQuery();
-
-            resultSet.next();
-            int id = resultSet.getInt("id_users");
-            String name = resultSet.getString("name_users");
-            String date_created = resultSet.getString("date_created");
-            byte status = resultSet.getByte("status");
-            byte role = resultSet.getByte("role");
-
-            return new Users(id,name, user, pass,date_created,status, role);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public Users getLogin(String user, String pass) {
+//        try {
+//            String sql = "select * from `movie`.`users` where `acc`= ? and `pass`= ?";
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setString(1, user);
+//            statement.setString(2, pass);
+//            ResultSet resultSet = statement.executeQuery();
+//
+//            resultSet.next();
+//            int id = resultSet.getInt("id_users");
+//            String name = resultSet.getString("name_users");
+//            String date_created = resultSet.getString("date_created");
+//            byte status = resultSet.getByte("status");
+//            byte role = resultSet.getByte("role");
+//
+//            return new Users(id,name, user, pass,date_created,status, role);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }
