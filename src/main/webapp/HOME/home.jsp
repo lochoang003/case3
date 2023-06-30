@@ -14,7 +14,7 @@
 
     <script src="main.js"></script>
     <link rel="stylesheet" href="home.css">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 </head>
 <body>
 <div class="wrapper">
