@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
             session.setAttribute("account", users);
 
             if (users.getRole().equals("client") && users.getStatus() == ON) {
-                resp.sendRedirect("/HOME/home.jsp");
+                resp.sendRedirect("/home");
             } else if (users.getRole().equals("client") && users.getStatus() == OFF) {
                 req.setAttribute("err", "Your account has been locked");
                 RequestDispatcher rd = req.getRequestDispatcher("/SignIn/SignIn.jsp");
