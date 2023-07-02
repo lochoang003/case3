@@ -30,7 +30,7 @@
         <nav class="main-nav">
             <ul class="nav navbar-nav navbar-right">
                 <!--            trang chủ-->
-                <li><a href="#home">Home</a></li>
+                <li><a href="/home">Home</a></li>
                 <!--            thể loại-->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genres
@@ -39,7 +39,8 @@
                         <c:forEach items="${genres}" var="genres">
                             <li class="list-group-item">
                                 <form action="/genre" method="POST">
-                                    <input type="hidden" name="genre" value="${genres.id}" />
+                                    <input type="hidden" name="genre_id" value="${genres.id}" />
+                                    <input type="hidden" name="genre_name" value="${genres.name}" />
                                     <button type="submit" class="btn btn-link" >${genres.name}</button>
                                 </form>
                             </li>
@@ -79,8 +80,17 @@
 
     <section class="main-container">
         <!--        phim cơ bản-->
+        <c:if test="${name_genre != null}">
+            <h1 id="home1">${name_genre}</h1>
+            <div class="box">
+                <c:forEach items="${movie_genre}" var="movies">
+                    <a href="/demo.jsp"><img src="${movies.img}?raw=true"
+                                             alt="${movies.name}"></a>
+                </c:forEach>
+            </div>
+        </c:if>
         <div class="location" id="home">
-            <h1 id="home1">Popular on Netflix</h1>
+            <h1 >Popular on Netflix</h1>
             <div class="box">
                 <c:forEach items="${movies}" var="movies">
                     <a href="/demo.jsp"><img src="${movies.img}?raw=true"
