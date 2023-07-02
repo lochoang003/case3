@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" external-system-id="GRADLE" name="Gradle : com.example : Case3-1.0-SNAPSHOT.war (exploded)">
-    <output-path>$PROJECT_DIR$/build/libs/exploded/Case3-1.0-SNAPSHOT.war</output-path>
+  <artifact type="exploded-war" external-system-id="GRADLE" name="Gradle : com.example : case3-1.0-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/build/libs/exploded/case3-1.0-SNAPSHOT.war</output-path>
     <properties id="gradle-properties">
       <options external-project-path="$PROJECT_DIR$">
         <buildTaskPath>:war_exploded</buildTaskPath>
@@ -10,12 +10,12 @@
     </properties>
     <root id="root">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/Case3-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/case3-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="Case3.main/web/Web Gradle : Case3-1.0-SNAPSHOT.war" />
+      <element id="javaee-facet-resources" facet="case3.main/web/Web Gradle : case3-1.0-SNAPSHOT.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Case3.main" />
+          <element id="module-output" name="case3.main" />
           <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
         </element>
         <element id="directory" name="lib">

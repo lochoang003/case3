@@ -32,6 +32,18 @@ public class Home_Servlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        List<Genre> genres = new Genre_DAO().selectAllGenre();
+        List<Movie> movies = new Movie_DAO().getAllMovieGenre();
+        List<Movie> trending = new Movie_DAO().getTrending();
+        List<Movie> G18 = new Movie_DAO().getMovieByGenre(1);
+        List<Movie> movie_genre = (List<Movie>) req.getAttribute("movie_genre");
+        req.setAttribute("movie_genre",movie_genre);
+        req.setAttribute("name_genre",req.getAttribute("name_genre"));
+        req.setAttribute("genres",genres);
+        req.setAttribute("movies",movies);
+        req.setAttribute("trending",trending);
+        req.setAttribute("G18",G18);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/HOME/home.jsp");
+        dispatcher.forward(req,resp);
     }
 }
