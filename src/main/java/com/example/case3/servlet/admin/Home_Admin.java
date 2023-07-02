@@ -14,7 +14,7 @@ public class Home_Admin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("nameAdmin");
         req.setAttribute("user",name);
-        RequestDispatcher rd = req.getRequestDispatcher("/Admin/admin.html");
+        RequestDispatcher rd = req.getRequestDispatcher("/Admin/admin.jsp");
                 rd.forward(req, resp);
     }
 }
