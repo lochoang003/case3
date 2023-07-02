@@ -27,6 +27,14 @@ public class Users {
         this.date_created = date_created;
     }
 
+    public Users(int id, String name, String user, String pass, String date_created) {
+        this.id = id;
+        this.name = name;
+        this.user = user;
+        this.pass = pass;
+        this.date_created = date_created;
+    }
+
     public int getId() {
         return id;
     }

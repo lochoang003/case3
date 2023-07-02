@@ -13,7 +13,7 @@
             crossorigin="anonymous"></script>
 
     <script src="main.js"></script>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/HOME/home.css">
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
@@ -36,21 +36,19 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genres
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-<%--                        <c:forEach items="${}">--%>
-
-<%--                        </c:forEach>--%>
-                        <li class="list-group-item"><a href="#"> 18+ </a></li>
-                        <li class="list-group-item"><a href="#">Horror</a></li>
-                        <li class="list-group-item"><a href="#">Romance</a></li>
-                        <li class="list-group-item"><a href="#">Anime</a></li>
-                        <li class="list-group-item"><a href="#">Action</a></li>
-                        <li class="list-group-item"><a href="#">Documentary</a></li>
+                        <c:forEach items="${genres}" var="genres">
+                            <li class="list-group-item">
+                                <form action="/genre" method="POST">
+                                    <input type="hidden" name="genre" value="${genres.id}" />
+                                    <button type="submit" class="btn btn-link" >${genres.name}</button>
+                                </form>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </li>
                 <!--            quốc gia-->
                 <li><a href="#movies">Country</a></li>
                 <!--            phim đã lưu-->
-                <li><a href="#originals">My List</a></li>
             </ul>
         </nav>
         <nav class="sub-nav">
@@ -59,7 +57,19 @@
             <!--            thông báo-->
             <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
             <!--            tài khoản-->
-            <a href="#">Account</a>
+
+
+            <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li class="list-group-item"><a href="/login">Log out</a></li>
+                    <li class="list-group-item"><a href="#">My List</a></li>
+                </ul>
+            </div>
+
+
+<%--            <a href="#">Account</a>--%>
         </nav>
     </header>
     <!-- END OF HEADER -->
@@ -72,63 +82,29 @@
         <div class="location" id="home">
             <h1 id="home1">Popular on Netflix</h1>
             <div class="box">
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p1.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p2.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p3.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p4.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p5.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p6.PNG?raw=true"
-                                alt=""></a>
-
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p7.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p8.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p9.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p10.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p11.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p12.PNG?raw=true"
-                                alt=""></a>
+                <c:forEach items="${movies}" var="movies">
+                    <a href="/demo.jsp"><img src="${movies.img}?raw=true"
+                                    alt="${movies.name}"></a>
+                </c:forEach>
             </div>
         </div>
         <!--        trend-->
 
+
         <h1 id="myList">Trending Now</h1>
         <div class="box">
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/t1.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/t2.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/t3.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/t4.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/t5.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/t6.PNG?raw=true" alt=""></a>
+            <c:forEach items="${trending}" var="trending">
+                <a href="/demo.jsp"><img src="${trending.img}?raw=true"
+                                         alt="${trending.name}"></a>
+            </c:forEach>
         </div>
 
-        <h1 id="tvShows">TV Shows</h1>
+        <h1 id="tvShows">18 +</h1>
         <div class="box">
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv1.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv2.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv3.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv4.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv5.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv6.PNG?raw=true" alt=""></a>
-
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv7.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv8.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv9.PNG?raw=true" alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv10.PNG?raw=true"
-                            alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv11.PNG?raw=true"
-                            alt=""></a>
-            <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv12.PNG?raw=true"
-                            alt=""></a>
+            <c:forEach items="${G18}" var="G18">
+                <a href="/demo.jsp"><img src="${G18.img}?raw=true"
+                                         alt="${G18.name}"></a>
+            </c:forEach>
         </div>
 
         <!--thể loại hành động và phiêu lưu-->

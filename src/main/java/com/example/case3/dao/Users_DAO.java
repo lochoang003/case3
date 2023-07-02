@@ -12,6 +12,8 @@ public class Users_DAO {
     private static final String INSERT_USERS_SQL = "INSERT INTO  `movie`.`users` (name_users,acc,pass,date_created) VALUES (?,?,?,?);";
     private static final String SET_PASS_SQL = "UPDATE `movie`.`users` SET `pass` = '?' WHERE (`id_users` = '?');";
     private static final String SELECT_ID_SQL = "select `id` from `movie`.`users`;";
+    private static final String DELETE_BY_ID="DELETE FROM `movie`.`users` WHERE (`id_users` = ?);";
+    private static final String SET_USER_BY_ID="UPDATE `movie`.`users` SET `name_users` = ?, `acc` = ?, `pass` = ?, `date_created` = ? WHERE (`id_users` = ?);";
     DAO dao = new DAO();
     Connection connection = dao.getConnection();
     public  List<Users> getAll_users(){
@@ -41,7 +43,6 @@ public class Users_DAO {
             preparedStatement.setString(2, users.getAcc());
             preparedStatement.setString(3, users.getPass());
             preparedStatement.setString(4, users.getDate_created());
-
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +67,6 @@ public class Users_DAO {
             statement.setString(1, user);
             statement.setString(2, pass);
             ResultSet resultSet = statement.executeQuery();
-
             resultSet.next();
             int id = resultSet.getInt("id_users");
             String name = resultSet.getString("name_users");
@@ -80,5 +80,25 @@ public class Users_DAO {
             e.printStackTrace();
         }
         return null;
+    }
+    public boolean delByID(int id) throws Exception{
+        boolean checkExecute;
+        try (CallableStatement callSte=connection.prepareCall(DELETE_BY_ID);){
+            callSte.setInt(1,id);
+            checkExecute= callSte.execute();
+            return checkExecute;
+        }
+    }
+    public boolean setUserById(Users users)throws Exception{
+        boolean checkExecute;
+        try (CallableStatement callSte=connection.prepareCall(SET_USER_BY_ID);){
+            callSte.setString(1,users.getName());
+            callSte.setString(2, users.getAcc());
+            callSte.setString(3, users.getPass());
+            callSte.setString(4, users.getDate_created());
+            callSte.setInt(6, users.getId());
+            checkExecute= callSte.execute();
+            return checkExecute;
+        }
     }
 }

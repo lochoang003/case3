@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/SignIn/style.css">
   <title>Netflix - Watch TV Shows Online, Watch Movies Online</title>
-  <link rel="stylesheet" href="SignIn.css">
+  <link rel="stylesheet" href="/SignIn/SignIn.css">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 </head>
 <body>
 <header class="showcase">
@@ -27,6 +29,11 @@
         <div class="btn">
           <button class="btn-primary" type="submit">Sign In</button>
         </div>
+          <% String error = (String) request.getAttribute("err"); %>
+          <% if (error != null) { %>
+          <div style="color: red;"><%= error %>
+          </div>
+          <% } %>
         <div class="help">
           <div>
             <input value="true" type="checkbox"><label>Remember me</label>
