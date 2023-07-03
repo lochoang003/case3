@@ -3,10 +3,7 @@ package com.example.case3.dao;
 import com.example.case3.model.Genre;
 import com.example.case3.model.Movie;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +12,13 @@ public class Movie_DAO {
     Connection connection = dao.getConnection();
     private static final String INSERT_MOVIE_SQL = "INSERT INTO  `movie`.`movie` (`name_movie`, `time_movie`, `broadcast_date`, `date_of_manufacture`, `summary`, `image_movie`, `video`, `id_Nation`, `id_director`) " +
             "VALUES (?,?,?,?,?,?,?,?,?);";
-    private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
+   // private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
     private static final String SELECT_ALL_MOVIE = "select movie.* from `movie`.`movie`";
     private static final String SELECT_TRENDING_MOVIE = "select movie.* from `movie`.`movie` order by view desc limit 5";
-    //    private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
-//    private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
-//            " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
-//            " where id_movie = ?;";
+        private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
+   private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
+            " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
+            " where id_movie = ?;";
     private static final String NATION = "select `nation`.`name_nation` from `nation` " +
             "join `movie` on nation.id_nation = movie.id_nation " +
             "where movie.id_movie=? ;";
@@ -86,6 +83,29 @@ public void insertMovie(Movie movie) throws SQLException {
     }
 }
 
+public boolean updateMovie(Movie movie)throws Exception{
+    boolean checkExecute;
+    try (CallableStatement callSta =connection.prepareCall(UPDATE_MOVIE_SQL);
+    ){callSta.setString(1, movie.getName());
+        callSta.setInt(2, movie.getTime());
+        callSta.setString(3, movie.getBroadCast());
+        callSta.setString(4, movie.getManufacture());
+        callSta.setString(5, movie.getSummary());
+        callSta.setString(6, movie.getImg());
+        callSta.setString(7, movie.getVideo());
+        callSta.setString(8, movie.getNation());
+        callSta.setString(9, movie.getDirector());
+        callSta.setInt(10, (int) movie.getId());
+        return checkExecute=callSta.execute();
+    }
+}
+public boolean remoteMovie(int id)throws Exception{
+    boolean checkExecute;
+    try(CallableStatement callSta =connection.prepareCall(DELETE_MOVIE_SQL)) {
+        callSta.setInt(1,id);
+        return checkExecute= callSta.execute();
+    }
+}
     public List<Movie> getMovie(ResultSet resultSet) throws SQLException {
         List<Movie> movies = new ArrayList<>();
         while (resultSet.next()) {
