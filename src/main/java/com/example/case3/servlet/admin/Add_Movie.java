@@ -16,8 +16,15 @@ public class Add_Movie extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Movie_DAO temp = new Movie_DAO();
-            temp.insertMovie(new Movie(req.getParameter("name"), Integer.parseInt(req.getParameter("time")), req.getParameter("broadcast"), req.getParameter("Manufacture")
-                    , req.getParameter("Summary"), req.getParameter("Img"), req.getParameter("Video"), req.getParameter("Nation"), req.getParameter("Director")));
+            temp.insertMovie(new Movie(req.getParameter("name"),
+                    Integer.parseInt(req.getParameter("time")),
+                    req.getParameter("broadcast"),
+                    req.getParameter("Manufacture"),
+                    req.getParameter("Summary"),
+                    req.getParameter("Img"),
+                    req.getParameter("Video"),
+                    req.getParameter("Nation"),
+                    req.getParameter("Director")));
         } catch (Exception e) {
             e.printStackTrace();
         }

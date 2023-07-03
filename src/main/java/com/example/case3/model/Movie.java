@@ -41,8 +41,23 @@ public class Movie {
         this.view = view;
     }
 
+    public Movie(long id, String name, int time, String broadCast, String manufacture, String summary, String img, String video, String director, String nation) {
+        this.id = id;
+        this.name = name;
+        this.time = time;
+        this.broadCast = broadCast;
+        this.manufacture = manufacture;
+        this.summary = summary;
+        this.img = img;
+        this.video = video;
+        this.director = director;
+        this.nation = nation;
+    }
+
     public Movie() {
     }
+
+
 
     public long getView() {
         return view;

@@ -3,10 +3,7 @@ package com.example.case3.dao;
 import com.example.case3.model.Genre;
 import com.example.case3.model.Movie;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +22,12 @@ public class Movie_DAO {
 //    private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
 //            " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
 //            " where id_movie = ?;";
+
+        private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
+   private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
+            " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
+            " where id_movie = ?;";
+
     private static final String NATION = "select `nation`.`name_nation` from `nation` " +
             "join `movie` on nation.id_nation = movie.id_nation " +
             "where movie.id_movie=? ;";
@@ -34,6 +37,30 @@ public class Movie_DAO {
     private static final String SELECT_MOVIE_GENRE = "SELECT movie.* FROM movie " +
             "join movie_genre on movie.id_movie = movie_genre.id_movie " +
             "join genre on movie_genre.id_genre = genre.id_genre where genre.id_genre = ?;";
+    private static final String UPDATE_MOVIE_VIEW = "UPDATE `movie`.`movie` SET `view` = ? WHERE (`id_movie` = ? );";
+    private static final String SELECT_VIEW_MOVIE ="SELECT movie.view FROM movie.movie " +
+            "where movie.id_movie = ?" ;
+
+    public long viewMovie(long id){
+        long view =0 ;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VIEW_MOVIE)){
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            view = rs.getLong("view");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return view;
+    }
+    public void updateView(long id){
+        long view = viewMovie(id) +1;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MOVIE_VIEW)){
+            preparedStatement.setLong(1, view );
+            preparedStatement.setLong(1, id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 // tìm phim  theo id
 
@@ -131,7 +158,29 @@ public void insertMovie(Movie movie) throws SQLException {
     }
 }
 
-
+public boolean updateMovie(Movie movie)throws Exception{
+    boolean checkExecute;
+    try (CallableStatement callSta =connection.prepareCall(UPDATE_MOVIE_SQL);
+    ){callSta.setString(1, movie.getName());
+        callSta.setInt(2, movie.getTime());
+        callSta.setString(3, movie.getBroadCast());
+        callSta.setString(4, movie.getManufacture());
+        callSta.setString(5, movie.getSummary());
+        callSta.setString(6, movie.getImg());
+        callSta.setString(7, movie.getVideo());
+        callSta.setString(8, movie.getNation());
+        callSta.setString(9, movie.getDirector());
+        callSta.setInt(10, (int) movie.getId());
+        return checkExecute=callSta.execute();
+    }
+}
+public boolean remoteMovie(int id)throws Exception{
+    boolean checkExecute;
+    try(CallableStatement callSta =connection.prepareCall(DELETE_MOVIE_SQL)) {
+        callSta.setInt(1,id);
+        return checkExecute= callSta.execute();
+    }
+}
 
     public List<Movie> getMovie(ResultSet resultSet) throws SQLException {
         List<Movie> movies = new ArrayList<>();
