@@ -16,6 +16,7 @@ import java.util.List;
 
 @WebServlet("/home")
 public class Home_Servlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Genre> genres = new Genre_DAO().selectAllGenre();

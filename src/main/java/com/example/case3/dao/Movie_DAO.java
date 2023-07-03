@@ -17,7 +17,10 @@ public class Movie_DAO {
             "VALUES (?,?,?,?,?,?,?,?,?);";
     private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
     private static final String SELECT_ALL_MOVIE = "select movie.* from `movie`.`movie`";
+
     private static final String SELECT_TRENDING_MOVIE = "select movie.* from `movie`.`movie` order by view desc limit 5";
+    private static final String ADD_TO_LIST = "SELECT m.id_movie FROM users u JOIN add_movie am on u.id_users = am.id_users\n" +
+            "join movie m on m.id_movie=am.id_movie where am.id_users = ?; ";
     //    private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
 //    private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
 //            " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
@@ -71,6 +74,44 @@ public class Movie_DAO {
         }
         return movie;
     }
+    public Movie addToList(long id){
+        Movie movie = null;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(ADD_TO_LIST)) {
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name_movie");
+                int time = rs.getInt("time_movie");
+                String broadCast = rs.getString("broadcast_date");
+                String manufacture = rs.getString("date_of_manufacture");
+                String summary = rs.getString("summary");
+                String img = rs.getString("image_movie");
+                String video = rs.getString("video");
+                long view = rs.getLong("view");
+                String nation = "";
+                try (PreparedStatement ps = connection.prepareStatement(NATION)) {
+                    ps.setLong(1, id);
+                    ResultSet rs1 = ps.executeQuery();
+                    while (rs.next()) {
+                        nation += rs1.getString("name_nation") + " ";
+                    }
+                }
+                String director = "";
+                try (PreparedStatement ps = connection.prepareStatement(DIRECTOR)) {
+                    ps.setLong(1, id);
+                    ResultSet rs1 = ps.executeQuery();
+                    while (rs.next()) {
+                        director += rs1.getString("name_director") + " ";
+                    }
+                }
+                movie = new Movie(id, name, time, broadCast, manufacture, summary, img, video, director, nation, view);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return movie;
+    }
 
     // thêm phim
 public void insertMovie(Movie movie) throws SQLException {
@@ -89,6 +130,8 @@ public void insertMovie(Movie movie) throws SQLException {
         e.printStackTrace();
     }
 }
+
+
 
     public List<Movie> getMovie(ResultSet resultSet) throws SQLException {
         List<Movie> movies = new ArrayList<>();
@@ -160,6 +203,5 @@ public void insertMovie(Movie movie) throws SQLException {
         }
         return movies;
     }
-
 
 }
