@@ -14,7 +14,7 @@
 
     <script src="main.js"></script>
     <link rel="stylesheet" href="home.css">
-<%--    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
 <div class="wrapper">
@@ -72,7 +72,7 @@
         <div class="location" id="home">
             <h1 id="home1">Popular on Netflix</h1>
             <div class="box">
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p1.PNG?raw=true"
+                <a href="/movie"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p1.PNG?raw=true"
                                 alt=""></a>
                 <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p2.PNG?raw=true"
                                 alt=""></a>
@@ -94,8 +94,6 @@
                 <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p10.PNG?raw=true"
                                 alt=""></a>
                 <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p11.PNG?raw=true"
-                                alt=""></a>
-                <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/p12.PNG?raw=true"
                                 alt=""></a>
             </div>
         </div>

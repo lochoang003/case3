@@ -1,7 +1,5 @@
 package com.example.case3.model;
 
-import java.sql.Time;
-
 public class Movie {
     private long id;
     private String name;
@@ -41,7 +39,7 @@ public class Movie {
         this.view = view;
     }
 
-    public Movie() {
+    public Movie(long id, String name, int time, String broadCast, String manufacture, String summary, String img, String video, String s, Long view) {
     }
 
     public long getView() {

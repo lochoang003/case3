@@ -20,6 +20,6 @@ public class Genre_Servlet extends HttpServlet {
         req.setAttribute("genres",genres);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/HOME/home.jsp");
         dispatcher.forward(req,resp);
-
     }
 }
+
