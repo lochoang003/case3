@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/adminUpdateUser")
+@WebServlet("/Update_User")
 public class Udate_User extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,6 +22,7 @@ public class Udate_User extends HttpServlet {
             String date_created = req.getParameter("date_created");
             Users_DAO temp = new Users_DAO();
             temp.setUserById(new Users(id, name, acc, pass, date_created));
+            resp.sendRedirect("/Home_User");
         } catch (Exception e) {
             e.printStackTrace();
         }
