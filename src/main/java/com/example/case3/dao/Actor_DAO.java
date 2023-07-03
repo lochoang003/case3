@@ -1,6 +1,7 @@
 package com.example.case3.dao;
 
 import com.example.case3.model.Actor;
+import com.example.case3.model.Movie;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,8 @@ public class Actor_DAO {
     private static final String SELECT_ACTOR_BY_ID = "SELECT id_Actor,name_Actor,age,image_Actor from `movie`.`actor` where id = ?";
     private static final String SELECT_ALL_ACTOR = "SELECT * FROM `movie`.`actor`";
     private static final String DELETE_ACTOR = "DELETE FROM `movie`.`actor` WHERE ID = ? ";
+    private static final String SELECT_ACTOR = "SELECT name_Actor FROM actor JOIN actors on actor.id_Actor = actors.id_Actor " +
+            "JOIN movie on movie.id_movie = actors.id_movie WHERE movie.id_movie = ?";
     private static final String UPDATE_ACTOR = "UPDATE `movie`.`actor` SET `name_Actor` = ?, `age` = ?, `image_Actor` = ? WHERE (`id_Actor` = '1')";
 
     public Actor_DAO() {
@@ -31,6 +34,19 @@ public class Actor_DAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public String selectActor(long id){
+        String name_Actor = "";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ACTOR)) {
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                name_Actor += rs.getString("name_Actor" ) + " , ";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name_Actor;
     }
 
 //    public List<Actor> selectAllActor() {
@@ -52,23 +68,23 @@ public class Actor_DAO {
 //        return actors;
 //    }
 
-    public Actor selectActor(int id) {
-        Actor actor = null;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ACTOR_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                String name_Actor = rs.getString("name_Actor");
-                Byte age = rs.getByte("age");
-                String image_Actor = rs.getString("image_Actor");
-                actor = new Actor(id, name_Actor, age, image_Actor);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return actor;
-    }
+//    public Actor selectActor(int id) {
+//        Actor actor = null;
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ACTOR_BY_ID)) {
+//            preparedStatement.setInt(1, id);
+//            System.out.println(preparedStatement);
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                String name_Actor = rs.getString("name_Actor");
+//                Byte age = rs.getByte("age");
+//                String image_Actor = rs.getString("image_Actor");
+//                actor = new Actor(id, name_Actor, age, image_Actor);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return actor;
+//    }
 //    public boolean deleteActor(int id) throws SQLException{
 //        boolean rowDeleted;
 //        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ACTOR)){
