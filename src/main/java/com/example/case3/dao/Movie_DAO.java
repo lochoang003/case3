@@ -12,7 +12,7 @@ public class Movie_DAO {
     Connection connection = dao.getConnection();
     private static final String INSERT_MOVIE_SQL = "INSERT INTO  `movie`.`movie` (`name_movie`, `time_movie`, `broadcast_date`, `date_of_manufacture`, `summary`, `image_movie`, `video`, `id_Nation`, `id_director`) " +
             "VALUES (?,?,?,?,?,?,?,?,?);";
-   // private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
+    private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
     private static final String SELECT_ALL_MOVIE = "select movie.* from `movie`.`movie`";
     private static final String SELECT_TRENDING_MOVIE = "select movie.* from `movie`.`movie` order by view desc limit 5";
         private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
@@ -28,6 +28,30 @@ public class Movie_DAO {
     private static final String SELECT_MOVIE_GENRE = "SELECT movie.* FROM movie " +
             "join movie_genre on movie.id_movie = movie_genre.id_movie " +
             "join genre on movie_genre.id_genre = genre.id_genre where genre.id_genre = ?;";
+    private static final String UPDATE_MOVIE_VIEW = "UPDATE `movie`.`movie` SET `view` = ? WHERE (`id_movie` = ? );";
+    private static final String SELECT_VIEW_MOVIE ="SELECT movie.view FROM movie.movie " +
+            "where movie.id_movie = ?" ;
+
+    public long viewMovie(long id){
+        long view =0 ;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VIEW_MOVIE)){
+            preparedStatement.setLong(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            view = rs.getLong("view");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return view;
+    }
+    public void updateView(long id){
+        long view = viewMovie(id) +1;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MOVIE_VIEW)){
+            preparedStatement.setLong(1, view );
+            preparedStatement.setLong(1, id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 // tìm phim  theo id
 

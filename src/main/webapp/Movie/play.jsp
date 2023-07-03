@@ -35,17 +35,14 @@
         <div class="col-sm-2">
         </div>
         <div class="col-sm-8">
-            <div class="row">
-                <img src="${movie.img}" class="img-fluid">
+            <div style="text-align: center">
+                <iframe width="560" height="315" src="${movie.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
             </div>
             <div class="row">
                 <table>
                     <tr>
                         <td>
-                            <form action="/play" method="post">
-                                <button type="submit" class="btn btn-play" style="color: black; background-color: white">Play</button>
-                                <input name="id_Movie" type="hidden" value="${movie.id}">
-                            </form>
                         </td>
                         <td>
                             <button type="button" class="btn btn-netflix" onclick="toggleWatchlist(this)">
