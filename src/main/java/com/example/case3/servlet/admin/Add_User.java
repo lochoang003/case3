@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/adminAddUser")
+@WebServlet("/Add_User")
 public class Add_User extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,7 +18,8 @@ public class Add_User extends HttpServlet {
         String acc = req.getParameter("acc");
         String pass = req.getParameter("pass");
         String date_created = req.getParameter("date_created");
+        String role=req.getParameter("role");
         Users_DAO temp = new Users_DAO();
-        temp.insertAccSql(new Users(name, acc, pass, date_created));
+        temp.insertUser(new Users(name, acc, pass, date_created,role));
     }
 }

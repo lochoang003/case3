@@ -10,6 +10,7 @@ import java.util.List;
 public class Users_DAO {
     private static final String SELECT_ALL_SQL = "select * from `movie`.`users`;";
     private static final String INSERT_USERS_SQL = "INSERT INTO  `movie`.`users` (name_users,acc,pass,date_created) VALUES (?,?,?,?);";
+    private static final String INSERT_USERS2_SQL = "INSERT INTO  `movie`.`users` (name_users,acc,pass,date_created,role) VALUES (?,?,?,?,?);";
     private static final String SET_PASS_SQL = "UPDATE `movie`.`users` SET `pass` = '?' WHERE (`id_users` = '?');";
     private static final String SELECT_ID_SQL = "select `id` from `movie`.`users`;";
     private static final String DELETE_BY_ID="DELETE FROM `movie`.`users` WHERE (`id_users` = ?);";
@@ -44,6 +45,18 @@ public class Users_DAO {
             preparedStatement.setString(3, users.getPass());
             preparedStatement.setString(4, users.getDate_created());
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertUser(Users users) {
+        try (PreparedStatement pre = connection.prepareStatement(INSERT_USERS2_SQL)) {
+            pre.setString(1, users.getName());
+            pre.setString(2, users.getAcc());
+            pre.setString(3, users.getPass());
+            pre.setString(4, users.getDate_created());
+            pre.setString(5,users.getRole());
+            pre.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

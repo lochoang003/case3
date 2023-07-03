@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/adminDelUser")
+@WebServlet("/Delete_User")
 public class Delete_User extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -17,6 +17,7 @@ public class Delete_User extends HttpServlet {
             int id = Integer.parseInt(req.getParameter("id"));
             Users_DAO temp = new Users_DAO();
             temp.delByID(id);
+            resp.sendRedirect("/Home_User");
         } catch (Exception e) {
             e.printStackTrace();
         }
