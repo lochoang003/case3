@@ -84,7 +84,7 @@
             <h1 id="home1">${name_genre}</h1>
             <div class="box">
                 <c:forEach items="${movie_genre}" var="movies">
-                    <a href="/demo.jsp"><img src="${movies.img}?raw=true"
+                    <a href="/Movie.jsp"><img src="${movies.img}?raw=true"
                                              alt="${movies.name}"></a>
                 </c:forEach>
             </div>
@@ -93,8 +93,10 @@
             <h1 >Popular on Netflix</h1>
             <div class="box">
                 <c:forEach items="${movies}" var="movies">
-                    <a href="/demo.jsp"><img src="${movies.img}?raw=true"
-                                    alt="${movies.name}"></a>
+                        <a href="/movie?id_movie12=${movies.id}">
+                            <img src="${movies.img}?raw=true"
+                                 alt="${movies.name}">
+                        </a>
                 </c:forEach>
             </div>
         </div>
@@ -104,16 +106,20 @@
         <h1 id="myList">Trending Now</h1>
         <div class="box">
             <c:forEach items="${trending}" var="trending">
-                <a href="/demo.jsp"><img src="${trending.img}?raw=true"
-                                         alt="${trending.name}"></a>
+                <a href="/movie?id_movie12=${trending.id}">
+                    <img src="${trending.img}?raw=true"
+                         alt="${trending.name}">
+                </a>
             </c:forEach>
         </div>
 
         <h1 id="tvShows">18 +</h1>
         <div class="box">
             <c:forEach items="${G18}" var="G18">
-                <a href="/demo.jsp"><img src="${G18.img}?raw=true"
-                                         alt="${G18.name}"></a>
+                <a href="/movie?id_movie12=${G18.id}">
+                    <img src="${G18.img}?raw=true"
+                         alt="${G18.name}">
+                </a>
             </c:forEach>
         </div>
 
