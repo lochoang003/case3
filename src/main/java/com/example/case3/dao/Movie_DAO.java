@@ -12,7 +12,7 @@ public class Movie_DAO {
     Connection connection = dao.getConnection();
     private static final String INSERT_MOVIE_SQL = "INSERT INTO  `movie`.`movie` (`name_movie`, `time_movie`, `broadcast_date`, `date_of_manufacture`, `summary`, `image_movie`, `video`, `id_Nation`, `id_director`) " +
             "VALUES (?,?,?,?,?,?,?,?,?);";
-   // private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
+    private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
     private static final String SELECT_ALL_MOVIE = "select movie.* from `movie`.`movie`";
     private static final String SELECT_TRENDING_MOVIE = "select movie.* from `movie`.`movie` order by view desc limit 5";
         private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
