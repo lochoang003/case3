@@ -1,3 +1,5 @@
+<%--<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>--%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,6 @@
   <link rel="stylesheet" href="/SignIn/style.css">
   <title>Netflix - Watch TV Shows Online, Watch Movies Online</title>
   <link rel="stylesheet" href="/SignIn/SignIn.css">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 </head>
 <body>
