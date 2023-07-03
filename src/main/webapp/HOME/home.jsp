@@ -49,6 +49,39 @@
                 </li>
                 <!--            quốc gia-->
                 <li><a href="#movies">Country</a></li>
+<%--                <li><a href="#movies">Country</a></li>--%>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nation
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <%--                        <c:forEach items="${}">--%>
+                        <%--                        </c:forEach>--%>
+                        <li class="list-group-item"><a href="#"> England </a></li>
+                        <li class="list-group-item"><a href="#">Finland</a></li>
+                        <li class="list-group-item"><a href="#">Iceland</a></li>
+                        <li class="list-group-item"><a href="#">Austria</a></li>
+                        <li class="list-group-item"><a href="#">Germany</a></li>
+                        <li class="list-group-item"><a href="#">Italy</a></li>
+                        <li class="list-group-item"><a href="#">Russia</a></li>
+                        <li class="list-group-item"><a href="#">Japan</a></li>
+                    </ul>
+                </li>
+
+                <!-- nam san xuat -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Year
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <%--                        <c:forEach items="${}">--%>
+                        <%--                        </c:forEach>--%>
+                        <li class="list-group-item"><a href="#"> 1960-1970 </a></li>
+                        <li class="list-group-item"><a href="#">1970-1980</a></li>
+                        <li class="list-group-item"><a href="#">1980-1990</a></li>
+                        <li class="list-group-item"><a href="#">1990-2000</a></li>
+                        <li class="list-group-item"><a href="#">2000-2010</a></li>
+                        <li class="list-group-item"><a href="#">2010-Now</a></li>
+                    </ul>
+                </li>
                 <!--            phim đã lưu-->
             </ul>
         </nav>
