@@ -19,8 +19,8 @@ public class Movie_DAO {
     private static final String SELECT_ALL_MOVIE = "select movie.* from `movie`.`movie`";
 
     private static final String SELECT_TRENDING_MOVIE = "select movie.* from `movie`.`movie` order by view desc limit 5";
-    private static final String ADD_TO_LIST = "SELECT m.id_movie FROM users u JOIN add_movie am on u.id_users = am.id_users\n" +
-            "join movie m on m.id_movie=am.id_movie where am.id_users = ?; ";
+    private static final String ADD_TO_LIST = "SELECT m.id_movie, m.name_movie, m.time_movie, m.broadcast_date, m.date_of_manufacture, m.summary, m.image_movie, m.video, m.view, m.id_Nation, m.id_director \n" +
+            "FROM users u JOIN add_movie am on u.id_users = am.id_users join movie m on m.id_movie=am.id_movie where am.id_users = 1; ";
     //    private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
 //    private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
 //            " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
