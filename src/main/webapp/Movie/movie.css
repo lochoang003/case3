@@ -1,0 +1,19 @@
+.btn-netflix {
+    background-color: #e50914;
+    color: #fff;
+    border-color: #e50914;
+    font-weight: bold;
+}
+.btn-netflix:hover {
+    background-color: #e50914;
+    color: #fff;
+    border-color: #e50914;
+}
+.btn-netflix:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: #e50914;
+}
+.btn-netflix i {
+    margin-right: 5px;
+}
