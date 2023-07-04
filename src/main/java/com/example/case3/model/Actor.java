@@ -1,6 +1,7 @@
 package com.example.case3.model;
 
-public class Actor {
+public class
+Actor {
     private  int id_Actor;
     private String name_Actor;
     private byte age;

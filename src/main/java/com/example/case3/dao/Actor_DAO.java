@@ -49,24 +49,24 @@ public class Actor_DAO {
         return name_Actor;
     }
 
-//    public List<Actor> selectAllActor() {
-//        List<Actor> actors = new ArrayList<>();
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ACTOR);
-//            System.out.println(preparedStatement);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                int id_Actor = rs.getInt("id_Actor");
-//                String name_Actor = rs.getString("name_Actor");
-//                int age = rs.getInt("age");
-//                String image_Actor = rs.getString("image_Actor");
-//                actors.add(new Actor(id_Actor, name_Actor, (byte) age, image_Actor));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return actors;
-//    }
+    public List<Actor> selectAllActor() {
+        List<Actor> actors = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ACTOR);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id_Actor = rs.getInt("id_Actor");
+                String name_Actor = rs.getString("name_Actor");
+                int age = rs.getInt("age");
+                String image_Actor = rs.getString("image_Actor");
+                actors.add(new Actor(id_Actor, name_Actor, (byte) age, image_Actor));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return actors;
+    }
 
 //    public Actor selectActor(int id) {
 //        Actor actor = null;
@@ -85,14 +85,14 @@ public class Actor_DAO {
 //        }
 //        return actor;
 //    }
-//    public boolean deleteActor(int id) throws SQLException{
-//        boolean rowDeleted;
-//        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ACTOR)){
-//            preparedStatement.setInt(1,id);
-//            rowDeleted = preparedStatement.executeUpdate() >0;
-//        }
-//        return rowDeleted;
-//    }
+    public boolean deleteActor(int id) throws SQLException{
+        boolean rowDeleted;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ACTOR)){
+            preparedStatement.setInt(1,id);
+            rowDeleted = preparedStatement.executeUpdate() >0;
+        }
+        return rowDeleted;
+    }
     public boolean updateActor(Actor actor) throws SQLException{
         boolean rowUpdated;
         try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ACTOR)){

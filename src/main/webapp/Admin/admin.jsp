@@ -20,8 +20,9 @@
         <a href="/HomeMovie">
             <button class="custom-btn btn-6">Movie</button>
         </a>
-
+        <a href="/Home_Actor">
         <button class="custom-btn btn-6"><span>Actor</span></button>
+        </a>
 
         <button class="custom-btn btn-6"><span>Director</span></button>
 
