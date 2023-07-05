@@ -17,7 +17,7 @@ public class Add_Actor extends HttpServlet {
         try {
             Actor_DAO aa = new Actor_DAO();
             String name = req.getParameter("name_Actor");
-            byte age = Byte.valueOf(req.getParameter("age"));
+            byte age = Byte.parseByte(req.getParameter("age"));
             String img = req.getParameter("image_Actor");
             aa.insertActor(new Actor(name, age, img));
             resp.sendRedirect("/Home_Actor");

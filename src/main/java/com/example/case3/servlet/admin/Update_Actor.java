@@ -21,6 +21,7 @@ public class Update_Actor extends HttpServlet {
             byte age = Byte.parseByte(req.getParameter("age"));
             String img = req.getParameter("image_Actor");
             aa.updateActor(new Actor(id, name, age, img));
+            resp.sendRedirect("/Home_Actor");
         } catch (Exception e) {
             e.printStackTrace();
         }

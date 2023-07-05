@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delMovie")
+@WebServlet("/Delete_Movie")
 public class Delete_Movie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -17,6 +17,7 @@ public class Delete_Movie extends HttpServlet {
             int id = Integer.parseInt(req.getParameter("id"));
             Movie_DAO temp = new Movie_DAO();
             temp.remoteMovie(id);
+            resp.sendRedirect("/HomeMovie");
         } catch (Exception e) {
             e.printStackTrace();
         }

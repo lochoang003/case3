@@ -25,6 +25,7 @@ public class Add_Movie extends HttpServlet {
                     req.getParameter("Video"),
                     req.getParameter("Nation"),
                     req.getParameter("Director")));
+            resp.sendRedirect("/HomeMovie");
         } catch (Exception e) {
             e.printStackTrace();
         }

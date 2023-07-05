@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/adminUpdateMovie")
+@WebServlet("/Update_Movie")
 public class Update_Movie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,6 +27,7 @@ public class Update_Movie extends HttpServlet {
                     req.getParameter("Video"),
                     req.getParameter("Nation"),
                     req.getParameter("Director")));
+            resp.sendRedirect("/HomeMovie");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -39,8 +39,8 @@
                     <input type="hidden" name="id" value="${temp.getId_Actor()}">
                     <td>${temp.getId_Actor()}</td>
                     <td><input type="text" name="name_users" placeholder="${temp.getName_Actor()}"></td>
-                    <td><input type="text" name="acc" placeholder="${temp.getAge()}"></td>
-                    <td><input type="text" name="pass" placeholder="${temp.getImage_Actor()}"></td>
+                    <td><input type="text" name="age" placeholder="${temp.getAge()}"></td>
+                    <td><input type="text" name="image_Actor" placeholder="${temp.getImage_Actor()}"></td>
                     <td><button type="submit" class="btn btn-warning">Edit</button></td>
                 </form>
 

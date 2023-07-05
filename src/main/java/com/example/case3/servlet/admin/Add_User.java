@@ -14,12 +14,8 @@ import java.io.IOException;
 public class Add_User extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name_users");
-        String acc = req.getParameter("acc");
-        String pass = req.getParameter("pass");
-        String date_created = req.getParameter("date_created");
-        String role=req.getParameter("role");
         Users_DAO temp = new Users_DAO();
-        temp.insertUser(new Users(name, acc, pass, date_created,role));
+        temp.insertUser(new Users(req.getParameter("name_users"), req.getParameter("acc"), req.getParameter("pass"), req.getParameter("date_created"), req.getParameter("role")));
+        resp.sendRedirect("/Home_User");
     }
 }

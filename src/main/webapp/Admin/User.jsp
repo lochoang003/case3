@@ -16,12 +16,13 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/Admin/admin.css">
 </head>
 <body>
 <div class="container">
     <h2>Danh sách User</h2>
     <p>Bao gồm cả Admin </p>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myMD">
+    <button type="button" class="custom-btn btn-5" data-toggle="modal" data-target="#myMD">
         Create
     </button>
     <table class="table table-striped">
@@ -57,13 +58,13 @@
                         </c:if></td>
                     <td>${nv.getRole()}</td>
                     <td>
-                        <button type="submit" class="btn btn-warning">Edit</button>
+                        <button type="submit" class="custom-btn btn-3">Edit</button>
                 </form>
                 </td>
                 <td>
                     <form action="/Delete_User" method="post">
                         <input type="hidden" name="id" value="${nv.getId()}">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="custom-btn btn-4">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -81,8 +82,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <input placeholder="name" name="name"><br>
-                    <input placeholder="user" name="user"><br>
+                    <input placeholder="name" name="name_users"><br>
+                    <input placeholder="user" name="acc"><br>
                     <input placeholder="pass" name="pass"><br>
                     <input placeholder="date_created" name="date_created"><br>
                     <input type="radio" id="admin" name="role" value="Admin">
@@ -91,7 +92,7 @@
                     <label for="client">Client</label><br>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Create</button>
+                    <button type="submit" class="custom-btn btn-6">Create</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>

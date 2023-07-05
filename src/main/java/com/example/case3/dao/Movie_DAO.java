@@ -134,6 +134,8 @@ public boolean remoteMovie(int id)throws Exception{
         return checkExecute= callSta.execute();
     }
 }
+
+
     public List<Movie> getMovie(ResultSet resultSet) throws SQLException {
         List<Movie> movies = new ArrayList<>();
         while (resultSet.next()) {

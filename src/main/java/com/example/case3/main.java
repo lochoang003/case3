@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class main {
     public static void main(String[] args) {
-        Users_DAO ud=new Users_DAO();
-        ArrayList<Users> list= (ArrayList<Users>) ud.getAll_users();
+
     }
 }
