@@ -1,7 +1,5 @@
 package com.example.case3.model;
 
-import java.sql.Time;
-
 public class Movie {
     private long id;
     private String name;

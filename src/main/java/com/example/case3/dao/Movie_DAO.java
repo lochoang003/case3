@@ -15,8 +15,8 @@ public class Movie_DAO {
     private static final String SELECT_MOVIE_ID = "select * from `movie`.`movie` where id_movie =?";
     private static final String SELECT_ALL_MOVIE = "select movie.* from `movie`.`movie`";
     private static final String SELECT_TRENDING_MOVIE = "select movie.* from `movie`.`movie` order by view desc limit 5";
-        private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
-   private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
+    private static final String DELETE_MOVIE_SQL = "delete from `movie`.`movie` where id_movie = ?;";
+    private static final String UPDATE_MOVIE_SQL = "update `movie`.`movie` set" +
             " `name_movie` =?, `time_movie` =?, `broadcast_date` =?, `date_of_manufacture` =?, `summary` =?, `image_movie` =?, `video` =?, `id_Nation` =?, `id_director` =?" +
             " where id_movie = ?;";
     private static final String NATION = "select `nation`.`name_nation` from `nation` " +
@@ -29,26 +29,28 @@ public class Movie_DAO {
             "join movie_genre on movie.id_movie = movie_genre.id_movie " +
             "join genre on movie_genre.id_genre = genre.id_genre where genre.id_genre = ?;";
     private static final String UPDATE_MOVIE_VIEW = "UPDATE `movie`.`movie` SET `view` = ? WHERE (`id_movie` = ? );";
-    private static final String SELECT_VIEW_MOVIE ="SELECT movie.view FROM movie.movie " +
-            "where movie.id_movie = ?" ;
+    private static final String SELECT_VIEW_MOVIE = "SELECT movie.view FROM movie.movie " +
+            "where movie.id_movie = ?";
 
-    public long viewMovie(long id){
-        long view =0 ;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VIEW_MOVIE)){
+
+    public long viewMovie(long id) {
+        long view = 0;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VIEW_MOVIE)) {
             preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             view = rs.getLong("view");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return view;
     }
-    public void updateView(long id){
-        long view = viewMovie(id) +1;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MOVIE_VIEW)){
-            preparedStatement.setLong(1, view );
+
+    public void updateView(long id) {
+        long view = viewMovie(id) + 1;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MOVIE_VIEW)) {
+            preparedStatement.setLong(1, view);
             preparedStatement.setLong(1, id);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -94,46 +96,79 @@ public class Movie_DAO {
     }
 
     // thêm phim
-public void insertMovie(Movie movie) throws SQLException {
-    try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MOVIE_SQL)) {
-        preparedStatement.setString(1, movie.getName());
-        preparedStatement.setInt(2, movie.getTime());
-        preparedStatement.setString(3, movie.getBroadCast());
-        preparedStatement.setString(4, movie.getManufacture());
-        preparedStatement.setString(5, movie.getSummary());
-        preparedStatement.setString(6, movie.getImg());
-        preparedStatement.setString(7, movie.getVideo());
-        preparedStatement.setString(8, movie.getNation());
-        preparedStatement.setString(9, movie.getDirector());
-        preparedStatement.executeUpdate();
-    } catch (SQLException e) {
-        e.printStackTrace();
+    public void insertMovie(Movie movie) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MOVIE_SQL)) {
+            preparedStatement.setString(1, movie.getName());
+            preparedStatement.setInt(2, movie.getTime());
+            preparedStatement.setString(3, movie.getBroadCast());
+            preparedStatement.setString(4, movie.getManufacture());
+            preparedStatement.setString(5, movie.getSummary());
+            preparedStatement.setString(6, movie.getImg());
+            preparedStatement.setString(7, movie.getVideo());
+            preparedStatement.setInt(8, Integer.parseInt(movie.getNation()));
+            preparedStatement.setInt(9, Integer.parseInt(movie.getDirector()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-}
 
-public boolean updateMovie(Movie movie)throws Exception{
-    boolean checkExecute;
-    try (CallableStatement callSta =connection.prepareCall(UPDATE_MOVIE_SQL);
-    ){callSta.setString(1, movie.getName());
-        callSta.setInt(2, movie.getTime());
-        callSta.setString(3, movie.getBroadCast());
-        callSta.setString(4, movie.getManufacture());
-        callSta.setString(5, movie.getSummary());
-        callSta.setString(6, movie.getImg());
-        callSta.setString(7, movie.getVideo());
-        callSta.setString(8, movie.getNation());
-        callSta.setString(9, movie.getDirector());
-        callSta.setInt(10, (int) movie.getId());
-        return checkExecute=callSta.execute();
+    public boolean updateMovie(Movie movie) throws Exception {
+        boolean checkExecute;
+        try (CallableStatement callSta = connection.prepareCall(UPDATE_MOVIE_SQL);
+        ) {
+            callSta.setString(1, movie.getName());
+            callSta.setInt(2, movie.getTime());
+            callSta.setString(3, movie.getBroadCast());
+            callSta.setString(4, movie.getManufacture());
+            callSta.setString(5, movie.getSummary());
+            callSta.setString(6, movie.getImg());
+            callSta.setString(7, movie.getVideo());
+            callSta.setInt(8, director(movie.getDirector()));
+            callSta.setInt(9, nation(movie.getNation()));
+            callSta.setInt(10, (int) movie.getId());
+            return checkExecute = callSta.execute();
+        }
     }
-}
-public boolean remoteMovie(int id)throws Exception{
-    boolean checkExecute;
-    try(CallableStatement callSta =connection.prepareCall(DELETE_MOVIE_SQL)) {
-        callSta.setInt(1,id);
-        return checkExecute= callSta.execute();
+
+    private int nation(String name) {
+        String sql = "SELECT nation.id_nation FROM movie.nation join movie.movie on movie.id_Nation=nation.id_Nation where nation.name_nation = '?';";
+        int a = 1;
+        try (CallableStatement callSta = connection.prepareCall(sql)) {
+            callSta.setString(1, name);
+            ResultSet rs = callSta.executeQuery();
+            rs.next();
+            a = rs.getInt("id_nation");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return a;
+
     }
-}
+
+    private int director(String name) {
+        int a = 1;
+        String sql = "SELECT director.id_director FROM movie.movie join movie.director on movie.id_director=director.id_director where director.name_director = '?';";
+
+        try (CallableStatement callSta = connection.prepareCall(sql)) {
+            callSta.setString(1, name);
+            ResultSet rs = callSta.executeQuery();
+            rs.next();
+            a = rs.getInt("id_director");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return a;
+
+    }
+
+    public boolean remoteMovie(int id) throws Exception {
+        boolean checkExecute;
+        try (CallableStatement callSta = connection.prepareCall(DELETE_MOVIE_SQL)) {
+            callSta.setInt(1, id);
+            return checkExecute = callSta.execute();
+        }
+    }
 
 
     public List<Movie> getMovie(ResultSet resultSet) throws SQLException {

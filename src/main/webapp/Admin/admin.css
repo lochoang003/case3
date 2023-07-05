@@ -1,5 +1,7 @@
 body {
-    background: #e0e5ec;
+    background-image: url("https://cdn.stocksnap.io/img-thumbs/280h/VVSHA2JJTJ.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 h1 {
     position: relative;
@@ -805,4 +807,9 @@ button {
 }
 .btn-16:active {
     top: 2px;
+}
+
+.a{
+    width: 100%;
+
 }

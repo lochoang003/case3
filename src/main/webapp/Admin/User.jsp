@@ -39,7 +39,7 @@
             <th>Delete</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color: #999999">
         <c:forEach items="${user}" var="nv">
             <tr>
                 <form action="/Update_User" method="post">

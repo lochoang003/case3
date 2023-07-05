@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/Admin/admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style=" width: 100% ; height: 100% ;  background-image: url('https://cdn.stocksnap.io/img-thumbs/280h/VVSHA2JJTJ.jpg') ; " >
 <h1>Menu Admin</h1>
 <p>The functions of Admin Users </p>
 <div class="container">
@@ -48,7 +48,7 @@
         <!--                <button class="custom-btn btn-15">15</button>-->
         <!--                <button class="custom-btn btn-16">16</button>-->
         <!--                <button class="custom-btn btn-16">16</button>-->
-        <!--                <p style="font-family: Andale Mono, monospace;">DEERBUCKS.DESIGNING</p></tr>-->
+
     </div>
 
 </div>
